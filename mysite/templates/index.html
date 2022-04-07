@@ -1,1 +1,7 @@
-<h1>how are you?</h1>
+{% csrf_token %}
+{% if user.is_authenticated %}
+<h1>how are you, {{user}}?</h1>
+<a href="logout">Log out</a>
+{% else %}
+<h1>Log in, please</h1>
+{% endif %}

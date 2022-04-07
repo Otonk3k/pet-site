@@ -34,3 +34,30 @@ def register(request):
             return redirect('register')
         
     return render(request, 'register.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+
+def test(request):
+    posts = [1, 2, 3, 'numer post', 'some random shit', 7, 'a;slkdjfg']
+    return render(request, 'tests.html', {'posts': posts})
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username = username, password = password)
+        
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')
+        else:
+            messages.info(request, 'not true')
+            return redirect('login')
+   
+    else:
+        return render (request, 'login.html')
+
+def post(request, pk):
+    return render(request, 'post.html', {'pk': pk})
