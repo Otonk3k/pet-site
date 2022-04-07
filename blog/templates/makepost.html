@@ -1,0 +1,9 @@
+<form method="post">
+    {% csrf_token %}
+    <p>Title</p>
+    <input type="text" name="title">
+    <p>Body</p>
+    <input type="text" name="body" style="height: 200; width: 300;">
+    <br>
+    <input type="submit">
+</form>
